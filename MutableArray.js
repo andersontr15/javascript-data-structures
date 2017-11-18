@@ -126,7 +126,7 @@ class MutableArray {
 
     // O(1)
     size() {
-        return this.data.length
+        return this.size;
     }
 
 }
