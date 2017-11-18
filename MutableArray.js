@@ -119,9 +119,9 @@ class MutableArray {
                     arr[i] = this.data[i] === undefined ? item : this.data[i]
                 }
             }
-            this.data = arr;
             this.size += 1;
         }
+        this.data = arr;
     }
 
     // O(1)
