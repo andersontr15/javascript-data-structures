@@ -31,15 +31,8 @@ class MutableArray {
     // TODO: work on improving the functionality of this method
     insert(index, item) {
         if(index > this.data.length || index < 0) return 'Supplied invalid index range';
-        let arr = [];
-        for(let i = 0; i < this.data.length; i++){
-            if(i === index) {
-                arr = arr.concat(undefined)
-            }
-            else {
-                arr = arr.concat(this.data[i])
-            }
-        }
+        this.data.splice(index, 0, item);
+        return this.data;
     }
 
     is_empty() {
@@ -116,4 +109,4 @@ ma.push(3);
 ma.push(4);
 ma.push(12);
 ma.push(50);
-ma.prepend(25);
+ma.insert(2, 444);
