@@ -56,8 +56,10 @@ class MutableArray {
         if(removed !== undefined) {
             this.size -= 1;
         }
-
         // check if size is 1/4 of capacity; if so, resize our mutable array
+        if( ( this.size / this.capacity ) === 0.25) {
+            this._resize();
+        }
 
         return removed;
     }
@@ -78,7 +80,7 @@ class MutableArray {
     */
     push(item) {
         if(this.size + 1 === this.capacity) {
-            this.resize(item)
+            this._resize(item)
         } 
         else {
             this.data[this.size] = item;
@@ -98,20 +100,22 @@ class MutableArray {
     }
 
     // O(N) time complexity
-    resize(item) {
+    _resize(item) {
         this.capacity *= 2;
         let arr = new Array(this.capacity);
-        let pointer = 0;
-        for(let i = 0; i < this.data.length + 1; i++){
-            // while i is less than the size, fill in
-            // these values with the index
-            // otherwise, we will push the item
-            if(i <= this.size) {
-                arr[i] = this.data[i] === undefined ? item : this.data[i]
+        if(item) {
+            let pointer = 0;
+            for(let i = 0; i < this.data.length + 1; i++){
+                // while i is less than the size, fill in
+                // these values with the index
+                // otherwise, we will push the item
+                if(i <= this.size) {
+                    arr[i] = this.data[i] === undefined ? item : this.data[i]
+                }
             }
+            this.data = arr;
+            this.size += 1;
         }
-        this.data = arr;
-        this.size += 1;
     }
 
     // O(1)
@@ -123,9 +127,4 @@ class MutableArray {
 
 const ma = new MutableArray(4);
 ma.push(3);
-ma.push(4);
-ma.push(12);
-ma.push(50);
-ma.insert(2, 444);
-ma.delete(0);
-console.log(ma.remove(12));
+ma.pop();
