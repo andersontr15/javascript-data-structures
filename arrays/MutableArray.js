@@ -36,8 +36,14 @@ class MutableArray {
     // O(N) time complexity to insert and shift elements to right 
     // TODO: work on improving the functionality of this method
     insert(index, item) {
-        if(index > this.data.length || index < 0) return 'Supplied invalid index range';
-        this.data.splice(index, 0, item);
+        if(index < 0 || index > this.data.length) return;
+        let newArr = this.data.slice(0, index);
+        newArr = newArr.concat(item);
+        this.data = newArr.concat(this.data.slice(index, this.data.length));
+        this.size += 1;
+        if( ( this.size / this.capacity ) === 0.25) {
+            this._resize();
+        }
         return this.data;
     }
 
@@ -127,4 +133,7 @@ class MutableArray {
 
 const ma = new MutableArray(4);
 ma.push(3);
-ma.pop();
+ma.push(50);
+ma.push(20);
+ma.push(40);
+ma.insert(2,500);
