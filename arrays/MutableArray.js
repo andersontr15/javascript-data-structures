@@ -18,6 +18,12 @@ class MutableArray {
         return this.capacity;
     }
 
+    delete(index) {
+        if(index < 0 || index > this.data.length) return 'Supplied invalid index range';
+        this.data.splice(index, 1);
+        return this.data;
+    }
+
     find(item) {
         if(this.data.length === 0) return;
 
@@ -80,6 +86,17 @@ class MutableArray {
         }
     }
 
+    remove(value) {
+        const index = this.data.indexOf(value);
+        if(index > -1) {
+            this.data.splice(index, 1);
+            return this.data;
+        }
+        else {
+            return `${value} is not present in ${this.data}`
+        }
+    }
+
     // O(N) time complexity
     resize(item) {
         this.capacity *= 2;
@@ -110,3 +127,5 @@ ma.push(4);
 ma.push(12);
 ma.push(50);
 ma.insert(2, 444);
+ma.delete(0);
+console.log(ma.remove(12));
