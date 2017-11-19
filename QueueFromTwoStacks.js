@@ -57,4 +57,4 @@ const q = new Queue();
 q.enqueue(3);
 q.enqueue(4);
 q.dequeue();
-console.log(q);
+// console.log(q);
