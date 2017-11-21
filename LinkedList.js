@@ -84,6 +84,7 @@ class LinkedList {
     if (!this.head) return;
     let removed = this.head;
     this.head = this.head.next;
+    return removed;
   }
 
   push_back(value) {
