@@ -1,6 +1,6 @@
 class Queue {
 	constructor() {
-		this.innerStack = new Stack()
+		this.innerStack = new Stack();
 		this.outerStack = new Stack();
 	}
 
